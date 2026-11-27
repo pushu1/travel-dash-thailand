@@ -6,6 +6,7 @@ export const PACKAGE_INFO = {
   title: 'THAILAND GETAWAY | 4 NIGHTS / 5 DAYS',
   destination: 'Thailand (Pattaya & Bangkok)',
   duration: '4 Nights / 5 Days',
+  cities: 'Pattaya + Bangkok',
   travellerCountText: 'Just 2 Travellers. 2 Amazing Cities. 5 Days of Unforgettable Memories.',
   numberOfTravellersDefault: '2 Travellers',
   pricePerPerson: 61000,
@@ -25,11 +26,11 @@ export const PACKAGE_INFO = {
 };
 
 export const DEPARTURE_DATES = [
-  { id: '30-dec', date: '30 December', status: 'Filling Fast', peakSeason: true, label: '30 December (New Year Special)' },
-  { id: '13-jan', date: '13 January', status: 'Available', peakSeason: false, label: '13 January' },
-  { id: '27-jan', date: '27 January', status: 'Available', peakSeason: false, label: '27 January' },
-  { id: '24-feb', date: '24 February', status: 'Available', peakSeason: false, label: '24 February' },
-  { id: '10-mar', date: '10 March', status: 'Available', peakSeason: false, label: '10 March' },
+  { id: '30-dec', date: '30 December', status: 'Filling Fast', peakSeason: true, description: 'New Year Peak Season' },
+  { id: '13-jan', date: '13 January', status: 'Available', peakSeason: false, description: 'Winter Getaway' },
+  { id: '27-jan', date: '27 January', status: 'Available', peakSeason: false, description: 'January Special' },
+  { id: '24-feb', date: '24 February', status: 'Available', peakSeason: false, description: 'Spring Season' },
+  { id: '10-mar', date: '10 March', status: 'Available', peakSeason: false, description: 'Pleasant Tropical' },
 ];
 
 export const TRAVELLING_WITH_OPTIONS = [
@@ -44,41 +45,57 @@ export const HIGHLIGHTS = [
     title: '4 Nights / 5 Days',
     desc: 'Explore two exciting Thai destinations in one trip.',
     icon: 'Calendar',
+    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80',
+    tag: 'Complete Holiday'
   },
   {
     title: '2 Nights in Pattaya',
     desc: 'Enjoy beautiful beaches, island experiences and the lively atmosphere of Pattaya.',
     icon: 'Palmtree',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    tag: 'Coastal Bliss'
   },
   {
     title: '2 Nights in Bangkok',
     desc: 'Discover temples, shopping destinations and the city\'s vibrant lifestyle.',
     icon: 'Building2',
+    image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80',
+    tag: 'City Vibrance'
   },
   {
     title: 'Direct Air India Flights',
     desc: 'Enjoy non-stop return flights between Delhi and Bangkok.',
     icon: 'Plane',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
+    tag: 'Non-stop Air India'
   },
   {
     title: 'Coral Island Experience',
     desc: 'Enjoy a speedboat trip to Coral Island with Indian lunch included.',
     icon: 'Ship',
+    image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80',
+    tag: 'Speedboat & Lunch'
   },
   {
     title: 'Bangkok Temple Tour',
     desc: 'Explore Mini Reclining Buddha, Golden Buddha and Gems Gallery.',
     icon: 'Landmark',
+    image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80',
+    tag: 'Cultural Heritage'
   },
   {
     title: 'Comfortable Hotel Stays',
     desc: 'Stay at selected 4-star hotels with daily breakfast.',
     icon: 'Hotel',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    tag: '4-Star Comfort'
   },
   {
     title: 'Airport Transfers',
     desc: 'Airport and inter-hotel transfers included in your package.',
     icon: 'Car',
+    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
+    tag: 'Seamless Transit'
   },
 ];
 
@@ -88,21 +105,24 @@ export const DESTINATIONS = [
     city: 'PATTAYA',
     theme: 'Beaches, Islands & Excitement',
     description: 'Discover the coastal side of Thailand with beautiful beaches, exciting island experiences and plenty of opportunities to explore. Your Pattaya stay includes a Coral Island tour by speedboat with Indian lunch.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=85',
+    secondaryImage: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80',
     highlights: [
       'Coral Island sightseeing.',
       'Speedboat experience.',
       'Beautiful beaches.',
       'Free time to explore Pattaya.',
     ],
-    stayNights: '2 Nights Stay'
+    stayNights: '2 Nights Stay',
+    atmosphere: 'Tropical Turquoise Waters & Lively Beach Walks'
   },
   {
     id: 'bangkok',
     city: 'BANGKOK',
     theme: 'Culture, Shopping & City Life',
     description: 'Experience the energy of Bangkok, from beautiful temples and cultural attractions to shopping streets and lively city experiences. Your package includes a Bangkok City Temple Tour, while Day 4 gives you free time to explore the city at your own pace.',
-    image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1400&q=85',
+    secondaryImage: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80',
     highlights: [
       'Bangkok City Temple Tour.',
       'Golden Buddha.',
@@ -110,7 +130,8 @@ export const DESTINATIONS = [
       'Gems Gallery.',
       'Free time for shopping and exploring.',
     ],
-    stayNights: '2 Nights Stay'
+    stayNights: '2 Nights Stay',
+    atmosphere: 'Majestic Golden Shrines & High-Energy Nightlife'
   }
 ];
 
@@ -119,7 +140,7 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
     day: 1,
     title: 'Welcome to Thailand',
     subtitle: 'Bangkok to Pattaya',
-    description: 'Your Thailand adventure begins! Land in Bangkok, meet our representative and take a scenic transfer to Pattaya to unwind at your 4-star hotel.',
+    description: 'Your Thailand adventure begins! Arrive at Bangkok Airport, meet the local team, and transfer comfortably to Pattaya for check-in at Beston Pattaya with evening leisure.',
     activities: [
       'Arrive at Bangkok Airport.',
       'Meet the local team.',
@@ -128,14 +149,14 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       'Enjoy your free time exploring Pattaya.',
     ],
     overnight: 'Pattaya',
-    image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1000&q=80',
-    badge: 'Arrival Day'
+    image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=85',
+    badge: 'Arrival & Scenic Transfer'
   },
   {
     day: 2,
     title: 'Coral Island Adventure',
     subtitle: 'Speedboat & Turquoise Waters',
-    description: 'Get ready for a beautiful island experience! Speed across turquoise waves to Koh Larn (Coral Island) with an Indian buffet lunch by the beach.',
+    description: 'Get ready for a beautiful island experience! Speedboat across the Gulf of Thailand to Coral Island with soft sandy shores and an authentic Indian lunch included.',
     activities: [
       'Enjoy breakfast at the hotel.',
       'Get picked up for your Coral Island tour.',
@@ -145,14 +166,14 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       'Return to your hotel and enjoy your evening.',
     ],
     overnight: 'Pattaya',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80',
-    badge: 'Speedboat & Island'
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85',
+    badge: 'Speedboat & Indian Lunch'
   },
   {
     day: 3,
     title: 'Pattaya to Bangkok',
     subtitle: 'City & Temple Tour',
-    description: 'Time to explore Bangkok! Travel comfortably from Pattaya to the bustling capital, touring revered golden temples before checking into Sukhumvit.',
+    description: 'Time to explore Bangkok! Check out after breakfast, journey to the capital city for an inspiring temple tour, and check in at Best Western Sukhumvit 20.',
     activities: [
       'Enjoy breakfast and check out from your Pattaya hotel.',
       'Transfer to Bangkok.',
@@ -161,14 +182,14 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       'Check in at Best Western Sukhumvit 20.',
     ],
     overnight: 'Bangkok',
-    image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1000&q=80',
-    badge: 'Temple Heritage'
+    image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1200&q=85',
+    badge: 'Golden Temple Heritage'
   },
   {
     day: 4,
     title: 'Explore Bangkok at Your Own Pace',
     subtitle: 'Shopping, Cafes & Vibrant Nightlife',
-    description: 'A day to enjoy Bangkok your way! Dive into world-class malls like Iconsiam, explore street markets, or elevate your evening with a river cruise.',
+    description: 'A day to enjoy Bangkok your way! Dive into world-famous shopping malls, bustling street markets, or add optional cruises for an unforgettable night.',
     activities: [
       'Enjoy breakfast at the hotel.',
       'Explore the city and its shopping destinations.',
@@ -176,14 +197,14 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       'Choose optional experiences to make your day more exciting.',
     ],
     overnight: 'Bangkok',
-    image: 'https://images.unsplash.com/photo-1510379872555-a6306616664c?auto=format&fit=crop&w=1000&q=80',
-    badge: 'Free Exploration'
+    image: 'https://images.unsplash.com/photo-1510379872555-a6306616664c?auto=format&fit=crop&w=1200&q=85',
+    badge: 'Free Exploration & Leisure'
   },
   {
     day: 5,
     title: 'Goodbye Thailand',
     subtitle: 'Bangkok to Delhi',
-    description: 'Time to wrap up your Thailand getaway! Enjoy a relaxed breakfast before your VIP airport transfer to board your direct Air India flight back home.',
+    description: 'Time to wrap up your Thailand getaway! Savour hotel breakfast, checkout, transfer to Bangkok Airport, and board your return non-stop Air India flight to Delhi.',
     activities: [
       'Enjoy breakfast at the hotel.',
       'Check out from your hotel.',
@@ -191,9 +212,9 @@ export const ITINERARY_DAYS: ItineraryDay[] = [
       'Board your return Air India flight to Delhi.',
       'Take home wonderful memories of Thailand!',
     ],
-    overnight: 'Home / Delhi',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80',
-    badge: 'Safe Return'
+    overnight: 'Delhi (Home)',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85',
+    badge: 'Return Flight to Delhi'
   },
 ];
 
@@ -205,9 +226,9 @@ export const HOTELS: HotelDetail[] = [
     category: 'Hotel Category: 4 Star',
     roomType: 'Room Type: Deluxe Room',
     mealPlan: 'Meal Plan: Breakfast Included',
-    description: 'A stylish 4-star sanctuary located close to Pattaya\'s central entertainment and vibrant beach boulevard, offering spacious modern deluxe rooms and an inviting outdoor swimming pool.',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80',
-    features: ['Large Swimming Pool', 'Deluxe Room Included', 'Free High-speed Wi-Fi', 'Central Location', 'Delicious Breakfast Buffet']
+    description: 'A contemporary 4-star haven situated near Central Pattaya with spacious modern Deluxe Rooms, expansive outdoor swimming pool, and relaxing tropical terrace.',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
+    features: ['Large Outdoor Swimming Pool', 'Deluxe Room Included', 'Free High-speed Wi-Fi', 'Daily Breakfast Buffet', 'Close to Beach Boulevard']
   },
   {
     city: 'Bangkok',
@@ -216,9 +237,9 @@ export const HOTELS: HotelDetail[] = [
     category: 'Hotel Category: 4 Star',
     roomType: 'Room Type: Superior Room',
     mealPlan: 'Meal Plan: Breakfast Included',
-    description: 'Centrally situated in the upscale heart of Sukhumvit 20, surrounded by world-renowned shopping plazas, chic cafes, and BTS Skytrain stations for seamless exploration.',
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=80',
-    features: ['Prime Sukhumvit Location', 'Superior Room Included', 'Close to Asok BTS Station', 'Rooftop Bar & Lounge', 'Daily International Breakfast']
+    description: 'Nestled in the prime cosmopolitan heartbeat of Sukhumvit 20, moments away from Asok BTS station, luxury shopping malls, and Bangkok\'s finest dining avenues.',
+    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=85',
+    features: ['Prime Sukhumvit 20 Address', 'Superior Room Included', 'Walking Distance to BTS Skytrain', 'Rooftop Bar & Lounge', 'Daily International Breakfast']
   }
 ];
 
@@ -229,7 +250,7 @@ export const ADDONS: AddonExperience[] = [
     description: 'Experience exciting wildlife and marine attractions at Safari World.',
     price: 3600,
     priceLabel: '₹3,600',
-    badge: 'Most Popular',
+    badge: 'Top Recommendation',
     image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -238,7 +259,7 @@ export const ADDONS: AddonExperience[] = [
     description: 'Enjoy a memorable dinner cruise along Bangkok\'s famous Chao Phraya River.',
     price: 3000,
     priceLabel: '₹3,000',
-    badge: 'Romantic Highlight',
+    badge: 'Evening Highlight',
     image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -248,7 +269,7 @@ export const ADDONS: AddonExperience[] = [
     price: 1400,
     priceLabel: '₹1,400',
     note: 'Tickets Only.',
-    badge: 'Adventure',
+    badge: 'Adventure Extra',
     image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -257,7 +278,7 @@ export const ADDONS: AddonExperience[] = [
     description: 'Stay connected throughout your Thailand holiday with an unlimited data eSIM.',
     price: 800,
     priceLabel: '₹800',
-    badge: 'Essential Travel',
+    badge: 'Seamless Connectivity',
     image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=800&q=80'
   }
 ];

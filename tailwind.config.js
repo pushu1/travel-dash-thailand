@@ -8,49 +8,54 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#f0fdf9',
-          100: '#ccfbef',
-          200: '#99f6df',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#0d9488', // Tropical Teal
-          600: '#0f766e',
-          700: '#115e59',
-          800: '#134e4a',
-          900: '#042f2e',
+        navy: {
+          950: '#040E17',
+          900: '#071B2C', // Deep Navy (from user palette)
+          850: '#0B2236',
+          800: '#0E2A42',
+          700: '#143857',
+        },
+        ocean: {
+          DEFAULT: '#087E9E', // Ocean Blue
+          light: '#0AA0C9',
+          dark: '#06637C',
+        },
+        teal: {
+          tropical: '#12A6A0', // Tropical Teal
+        },
+        sand: {
+          warm: '#F5EBDD', // Warm Sand
         },
         gold: {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
+          champagne: '#D6B36A', // Champagne Gold
+          light: '#E7CC8C',
+          dark: '#B89349',
         },
         luxury: {
-          dark: '#0B1320', // Royal Navy Midnight
-          navy: '#121F35',
-          card: '#16233B',
-          accent: '#E5A93C', // Warm Thai Temple Gold
-          coral: '#FF6B52', // Sunset Coral
-          light: '#F8FAFC',
+          navy: '#071B2C',
+          ocean: '#087E9E',
+          teal: '#12A6A0',
+          sand: '#F5EBDD',
+          gold: '#D6B36A',
         }
       },
       fontFamily: {
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-        sans: ['var(--font-jakarta)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+        sans: ['var(--font-jakarta)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 4s ease-in-out infinite',
+        'pulse-subtle': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float-slow': 'float 6s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s linear infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         }
       }
     },

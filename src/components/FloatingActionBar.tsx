@@ -10,66 +10,66 @@ interface FloatingActionBarProps {
 
 export default function FloatingActionBar({ onHoldSeatsClick }: FloatingActionBarProps) {
   return (
-    <aside
-      aria-label="Quick booking actions"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-[#0B1320]/95 backdrop-blur-xl border-t border-amber-500/30 py-2.5 px-4 sm:px-6 shadow-[0_-10px_30px_rgba(0,0,0,0.6)]"
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-        {/* Left Price Display */}
-        <div className="flex items-center gap-3">
+    <>
+      {/* Mobile Sticky Bottom Booking Bar (visible only on mobile/tablet) */}
+      <aside
+        aria-label="Quick mobile booking actions"
+        className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#071B2C]/95 backdrop-blur-2xl border-t border-[#D6B36A]/30 py-2.5 px-4 shadow-[0_-10px_35px_rgba(0,0,0,0.8)]"
+      >
+        <div className="flex items-center justify-between gap-3">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
-              4N / 5D Thailand
+            <span className="text-[10px] uppercase font-bold tracking-wider text-[#F5EBDD]/60">
+              Thailand 4N/5D
             </span>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-base sm:text-xl font-extrabold text-amber-400 font-serif">
+            <div className="flex items-baseline gap-1">
+              <span className="text-base font-black text-[#D6B36A] font-serif">
                 {PACKAGE_INFO.pricePerPersonFormatted}
               </span>
-              <span className="text-[11px] text-slate-300 hidden sm:inline">
-                / Person ({PACKAGE_INFO.totalPackagePriceFormatted} for 2)
+              <span className="text-[10px] text-[#F5EBDD]/70 font-medium">
+                / Person
               </span>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-emerald-400">
-            <span>Air India Return Non-stop</span>
+          <div className="flex items-center gap-2">
+            <a
+              href={PACKAGE_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-[#12A6A0] text-white shadow-md active:scale-95"
+              aria-label="WhatsApp Chat"
+            >
+              <MessageCircle className="w-4 h-4 fill-white" />
+            </a>
+
+            <button
+              onClick={onHoldSeatsClick}
+              className="gold-luxury-btn text-[#071B2C] font-black text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 shadow-lg active:scale-95 uppercase tracking-wider"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>HOLD SEATS FOR ₹500</span>
+            </button>
           </div>
         </div>
+      </aside>
 
-        {/* Right Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Call Expert */}
-          <a
-            href={PACKAGE_INFO.phoneCallUrl}
-            className="flex items-center justify-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs border border-white/15 transition-all"
-            title="Call Travel Dash Expert"
-          >
-            <Phone className="w-4 h-4 text-amber-400" />
-            <span className="hidden sm:inline">Call Expert</span>
-          </a>
-
-          {/* WhatsApp */}
-          <a
-            href={PACKAGE_INFO.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md transition-all"
-            title="Chat on WhatsApp"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span className="hidden sm:inline">WhatsApp</span>
-          </a>
-
-          {/* Primary Seat Hold CTA */}
-          <button
-            onClick={onHoldSeatsClick}
-            className="gold-shimmer-btn text-slate-950 font-black text-xs sm:text-sm px-4 sm:px-6 py-2.5 sm:py-2.5 rounded-xl flex items-center gap-1.5 shadow-lg shrink-0"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-slate-950" />
-            <span>HOLD SEATS FOR ₹500</span>
-          </button>
-        </div>
+      {/* Desktop Floating WhatsApp Contact Bubble */}
+      <div className="hidden lg:block fixed bottom-8 right-8 z-40">
+        <a
+          href={PACKAGE_INFO.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-2.5 pl-3.5 pr-4 py-3 rounded-full bg-[#12A6A0] hover:bg-[#12A6A0]/90 text-white shadow-[0_10px_30px_rgba(18,166,160,0.4)] transition-all duration-300 hover:scale-105"
+        >
+          <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+            <MessageCircle className="w-4 h-4 fill-white" />
+          </div>
+          <div className="flex flex-col text-left">
+            <span className="text-[10px] uppercase tracking-wider font-semibold opacity-90">Talk to Specialist</span>
+            <span className="text-xs font-black tracking-wide">WhatsApp Support</span>
+          </div>
+        </a>
       </div>
-    </aside>
+    </>
   );
 }

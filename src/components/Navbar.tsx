@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Phone, MessageCircle, Menu, X, Sparkles, ShieldCheck } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, MessageCircle, Menu, X, Sparkles, Compass } from 'lucide-react';
 import { PACKAGE_INFO } from '@/data/packageData';
 
 interface NavbarProps {
@@ -12,191 +13,242 @@ interface NavbarProps {
 export default function Navbar({ onHoldSeatsClick }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  const navLinks = [
+    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'Highlights', href: '#highlights', id: 'highlights' },
+    { name: 'Destinations', href: '#destinations', id: 'destinations' },
+    { name: 'Itinerary', href: '#itinerary', id: 'itinerary' },
+    { name: 'Hotels', href: '#hotels', id: 'hotels' },
+    { name: 'Experiences', href: '#addons', id: 'addons' },
+    { name: 'Pricing', href: '#pricing', id: 'pricing' },
+    { name: 'FAQs', href: '#faqs', id: 'faqs' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
+
+      // Section spy
+      const sections = ['home', 'highlights', 'destinations', 'itinerary', 'hotels', 'addons', 'pricing', 'faqs', 'contact'];
+      const scrollPosition = window.scrollY + 180;
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: 'Highlights', href: '#highlights' },
-    { name: 'Destinations', href: '#destinations' },
-    { name: 'Itinerary', href: '#itinerary' },
-    { name: 'Hotels', href: '#hotels' },
-    { name: 'Add-ons', href: '#addons' },
-    { name: 'Inclusions', href: '#inclusions' },
-    { name: 'Dates & Price', href: '#pricing' },
-    { name: 'FAQs', href: '#faqs' },
-  ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    if (href === '#home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  const handleBookNow = () => {
+    setMobileMenuOpen(false);
+    if (onHoldSeatsClick) {
+      onHoldSeatsClick();
+    } else {
+      document.querySelector('#enquiry-form')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-[#0B1320]/95 backdrop-blur-md shadow-lg shadow-black/30 border-b border-amber-500/20 py-3'
-            : 'bg-gradient-to-b from-[#070D18]/90 via-[#070D18]/50 to-transparent py-4'
+            ? 'bg-[#071B2C]/95 backdrop-blur-xl border-b border-[#D6B36A]/20 py-3 shadow-[0_10px_30px_rgba(4,14,23,0.8)]'
+            : 'bg-gradient-to-b from-[#040E17]/90 via-[#071B2C]/50 to-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Brand Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center text-slate-950 font-extrabold shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
-                <span className="text-xl">✈</span>
+            {/* Travel Dash Luxury Brand Logo */}
+            <Link
+              href="/"
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="flex items-center gap-3 group focus:outline-none"
+            >
+              <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-[#E7CC8C] via-[#D6B36A] to-[#B89349] p-[1.5px] shadow-lg shadow-[#D6B36A]/25 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-full h-full bg-[#071B2C] rounded-[14px] flex items-center justify-center">
+                  <Compass className="w-6 h-6 text-[#D6B36A] group-hover:rotate-45 transition-transform duration-500" />
+                </div>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-1.5 font-serif">
-                  TRAVEL <span className="text-amber-400">DASH</span>
+                <span className="text-xl sm:text-2xl font-black tracking-tight text-white font-serif flex items-center">
+                  TRAVEL <span className="text-[#D6B36A] ml-1.5 font-light tracking-wider">DASH</span>
                 </span>
-                <span className="text-[10px] tracking-widest text-slate-400 uppercase font-semibold">
-                  Thailand Specialist
+                <span className="text-[9px] tracking-[0.25em] text-[#F5EBDD]/70 uppercase font-bold">
+                  Luxury Thailand Getaway
                 </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-3 py-1.5 text-xs xl:text-sm font-medium text-slate-200 hover:text-amber-400 rounded-md transition-colors hover:bg-white/5"
-                >
-                  {link.name}
-                </a>
-              ))}
+            {/* Desktop Navigation Links */}
+            <nav className="hidden xl:flex items-center space-x-1 lg:space-x-1.5">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`relative px-3 py-1.5 text-xs lg:text-[13px] font-medium tracking-wide transition-all duration-300 rounded-lg ${
+                      isActive
+                        ? 'text-[#D6B36A] font-bold'
+                        : 'text-[#F5EBDD]/80 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavIndicator"
+                        className="absolute bottom-0 left-2 right-2 h-[2px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
             </nav>
 
-            {/* Header Right Action CTA */}
-            <div className="hidden sm:flex items-center gap-3">
+            {/* Desktop Right Action Area */}
+            <div className="hidden lg:flex items-center gap-3">
               <a
                 href={PACKAGE_INFO.phoneCallUrl}
-                className="flex items-center gap-2 text-xs xl:text-sm font-medium text-slate-200 hover:text-amber-400 px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-amber-400/40 transition-all"
-                title="Call Travel Dash Expert"
+                className="hidden 2xl:flex items-center gap-2 text-xs font-semibold text-[#F5EBDD] hover:text-[#D6B36A] px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-[#D6B36A]/40 transition-all"
+                title="Call Travel Expert"
               >
-                <Phone className="w-3.5 h-3.5 text-amber-400" />
-                <span className="hidden xl:inline">{PACKAGE_INFO.contactPhone}</span>
-                <span className="xl:hidden">Call Expert</span>
+                <Phone className="w-3.5 h-3.5 text-[#D6B36A]" />
+                <span>+91 90577 06333</span>
               </a>
 
               <a
                 href={PACKAGE_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs xl:text-sm font-medium text-emerald-300 hover:text-white px-3 py-2 rounded-lg bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-600 transition-all"
-                title="Chat with Travel Dash on WhatsApp"
+                className="flex items-center gap-1.5 text-xs font-bold text-white px-3.5 py-2 rounded-xl bg-[#12A6A0]/20 hover:bg-[#12A6A0]/30 border border-[#12A6A0]/40 transition-all shadow-sm"
+                title="WhatsApp Direct Contact"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-400" />
+                <MessageCircle className="w-4 h-4 text-[#12A6A0]" />
                 <span className="hidden xl:inline">WhatsApp</span>
               </a>
 
+              {/* BOOK NOW CTA BUTTON */}
               <button
-                onClick={onHoldSeatsClick || (() => {
-                  document.querySelector('#enquiry-form')?.scrollIntoView({ behavior: 'smooth' });
-                })}
-                className="gold-shimmer-btn text-slate-950 font-bold text-xs xl:text-sm px-4 py-2 rounded-lg flex items-center gap-1.5 shadow-lg"
+                onClick={handleBookNow}
+                className="gold-luxury-btn text-[#071B2C] font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-lg tracking-wide uppercase hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Sparkles className="w-3.5 h-3.5 text-slate-950" />
-                <span>Hold Seats ₹500</span>
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>BOOK NOW</span>
               </button>
             </div>
 
-            {/* Mobile menu hamburger */}
-            <div className="flex sm:hidden items-center gap-2">
-              <a
-                href={PACKAGE_INFO.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-emerald-900/60 text-emerald-400 border border-emerald-500/30"
-                aria-label="WhatsApp"
+            {/* Mobile Hamburger Controls */}
+            <div className="flex xl:hidden items-center gap-2">
+              <button
+                onClick={handleBookNow}
+                className="gold-luxury-btn text-[#071B2C] font-extrabold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-md"
               >
-                <MessageCircle className="w-4 h-4" />
-              </a>
+                <Sparkles className="w-3 h-3" />
+                <span>BOOK NOW</span>
+              </button>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-200 hover:text-white"
-                aria-label="Toggle Menu"
+                className="p-2.5 rounded-xl bg-white/10 border border-white/15 text-[#F5EBDD] hover:text-white focus:outline-none"
+                aria-label="Toggle Navigation Menu"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-5 h-5 text-[#D6B36A]" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="sm:hidden bg-[#0B1320] border-b border-amber-500/20 px-4 pt-4 pb-6 mt-2 space-y-3 shadow-2xl animate-fadeIn">
-            <div className="grid grid-cols-2 gap-2 pb-3 border-b border-white/10">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-3 py-2 text-sm font-medium text-slate-200 hover:text-amber-400 bg-white/5 rounded-lg text-center"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
-            <div className="pt-2 flex flex-col gap-2.5">
-              <div className="flex items-center justify-between text-xs text-slate-400 px-1">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Non-stop Air India
-                </span>
-                <span>4N/5D Pattaya & Bangkok</span>
+        {/* Mobile Slide-in Drawer */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="xl:hidden bg-[#071B2C] border-b border-[#D6B36A]/20 px-5 pt-4 pb-6 mt-3 shadow-2xl backdrop-blur-2xl"
+            >
+              <div className="grid grid-cols-2 gap-2 pb-4 border-b border-white/10">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className={`px-3 py-2.5 text-xs font-semibold rounded-xl text-center transition-all ${
+                        isActive
+                          ? 'bg-[#D6B36A] text-[#071B2C] font-extrabold shadow-md'
+                          : 'bg-white/5 text-[#F5EBDD] hover:bg-white/10'
+                      }`}
+                    >
+                      {link.name}
+                    </a>
+                  );
+                })}
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                <a
-                  href={PACKAGE_INFO.phoneCallUrl}
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-white/10 text-white font-medium text-xs border border-white/15"
-                >
-                  <Phone className="w-3.5 h-3.5 text-amber-400" />
-                  Call Expert
-                </a>
-                <a
-                  href={PACKAGE_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-emerald-600 text-white font-semibold text-xs shadow-md"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp
-                </a>
-              </div>
+              <div className="pt-4 space-y-3">
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={PACKAGE_INFO.phoneCallUrl}
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white/10 text-white font-medium text-xs border border-white/10"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#D6B36A]" />
+                    Call Expert
+                  </a>
+                  <a
+                    href={PACKAGE_INFO.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#12A6A0] text-white font-bold text-xs shadow-md"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-white" />
+                    WhatsApp
+                  </a>
+                </div>
 
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  if (onHoldSeatsClick) {
-                    onHoldSeatsClick();
-                  } else {
-                    document.querySelector('#enquiry-form')?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="w-full gold-shimmer-btn text-slate-950 font-bold text-sm py-3 rounded-lg flex items-center justify-center gap-2"
-              >
-                <Sparkles className="w-4 h-4" />
-                HOLD MY SEATS FOR ₹500
-              </button>
-            </div>
-          </div>
-        )}
+                <button
+                  onClick={handleBookNow}
+                  className="w-full gold-luxury-btn text-[#071B2C] font-black text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-xl tracking-wide uppercase"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  HOLD MY SEATS FOR ₹500
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
     </>
   );
