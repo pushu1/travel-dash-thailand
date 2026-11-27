@@ -35,3 +35,5 @@ next-env.d.ts
 
 # local test data
 /data/*.json
+
+.vercel
